@@ -11,21 +11,25 @@ class NewTransaction extends StatefulWidget {
 }
 
 class _NewTransactionState extends State<NewTransaction> {
-  final titleController = TextEditingController();
-  final amountController = TextEditingController();
+  final _titleController = TextEditingController();
+  final _amountController = TextEditingController();
   DateTime _selectedDate;
 
   void _submitData() {
-    final _enteredTitle = titleController.text;
-    final _enteredAmount = double.parse(amountController.text);
+    if (_amountController.text.isEmpty) {
+      return;
+    }
+    final _enteredTitle = _titleController.text;
+    final _enteredAmount = double.parse(_amountController.text);
 
-    if (_enteredTitle.isEmpty || _enteredAmount <= 0) {
+    if (_enteredTitle.isEmpty || _enteredAmount <= 0 || _selectedDate == null) {
       return;
     }
 
     widget.addTx(
       _enteredTitle,
       _enteredAmount,
+      _selectedDate,
     );
 
     Navigator.of(context).pop(); // Closing the modal
@@ -58,12 +62,12 @@ class _NewTransactionState extends State<NewTransaction> {
           children: <Widget>[
             TextField(
               decoration: InputDecoration(labelText: 'Title'),
-              controller: titleController,
+              controller: _titleController,
               onSubmitted: (_) => _submitData(),
             ),
             TextField(
               decoration: InputDecoration(labelText: 'Amount'),
-              controller: amountController,
+              controller: _amountController,
               keyboardType: TextInputType.number,
               onSubmitted: (_) => _submitData(),
             ),
