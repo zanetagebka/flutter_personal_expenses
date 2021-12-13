@@ -19,28 +19,23 @@ class TransactionList extends StatelessWidget {
       child: ListView.builder(
         itemBuilder: (ctx, index) {
           return Card(
-            child: Row(children: <Widget>[
-              Container(
-                margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-                child: Text(
-                  "PLN ${transactions[index].amount.toStringAsFixed(2)}",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: <
-                  Widget>[
-                Text(
+            elevation: 5,
+              margin: EdgeInsets.symmetric(vertical: 8, horizontal: 5),
+              child: ListTile(
+                leading: CircleAvatar(
+                    radius: 30,
+                    child: Padding(
+                      padding: EdgeInsets.all(6),
+                      child: FittedBox(
+                          child: Text('PLN ${transactions[index].amount}')),
+                    )),
+                title: Text(
                   transactions[index].title,
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  style: Theme.of(context).textTheme.headline5,
                 ),
-                Text(DateFormat.yMMMEd().format(transactions[index].date),
-                    style: TextStyle(fontStyle: FontStyle.italic, fontSize: 12))
-              ])
-            ]),
-          );
+                subtitle:
+                    Text(DateFormat.yMMMd().format(transactions[index].date)),
+              ));
         },
         itemCount: transactions.length,
       ),
