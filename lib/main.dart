@@ -15,7 +15,6 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blueGrey,
         errorColor: Colors.red,
-        // appBarTheme: AppBarTheme(color: Colors.deepPurple),
       ),
       home: MyHomePage(),
     );
