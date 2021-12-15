@@ -16,7 +16,6 @@ class TransactionList extends StatelessWidget {
     // like below. Lazy loading which is more performance
     //
     return Container(
-      height: 500,
       child: ListView.builder(
         itemBuilder: (ctx, index) {
           return Card(
